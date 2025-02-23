@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +18,6 @@ namespace lab1
             InitializeComponent();
         }
 
-        // Выбор файла
         private void SelectFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -33,7 +31,6 @@ namespace lab1
             }
         }
 
-        // Загрузка файла
         private void LoadFile_Click(object sender, RoutedEventArgs e)
         {
             string path = FilePathTextBox.Text;
@@ -53,7 +50,6 @@ namespace lab1
             }
         }
 
-        // Поиск одного идентификатора
         private void SearchIdentifier_Click(object sender, RoutedEventArgs e)
         {
             string identifier = SearchTextBox.Text.Trim();
@@ -67,7 +63,6 @@ namespace lab1
             }
         }
 
-        // Поиск всех идентификаторов
         private void FindAll_Click(object sender, RoutedEventArgs e)
         {
             if (allIdentifiers.Count == 0)
@@ -91,7 +86,6 @@ namespace lab1
             totalComparisons += totalComparisonsLocal;
             double avgComparisons = searchCount > 0 ? (double)totalComparisons / searchCount : 0;
 
-            // Обновляем UI
             SearchCountTextBlock.Text = $"Всего поиск: {searchCount} раз";
             TreeStatusText.Text = $"Найдено {foundCount} из {allIdentifiers.Count}";
 
@@ -100,7 +94,6 @@ namespace lab1
             TreeAvgComparisons.Text = $"В среднем сравнений: {avgComparisons:F2}";
         }
 
-        // Сброс статистики
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             searchCount = 0;
@@ -115,13 +108,11 @@ namespace lab1
             TreeAvgComparisons.Text = "В среднем сравнений: 0";
         }
 
-        // Выход из программы
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        // Обновление списка идентификаторов
         private void UpdateList()
         {
             IdentifiersList.Items.Clear();
@@ -131,7 +122,6 @@ namespace lab1
             }
         }
 
-        // Обновление статистики поиска
         private void UpdateSearchStatistics(bool found, int comparisons)
         {
             searchCount++;
@@ -155,7 +145,6 @@ namespace lab1
         }
     }
 
-    // Узел бинарного дерева
     public class TreeNode
     {
         public char Key { get; set; }
@@ -170,7 +159,6 @@ namespace lab1
         }
     }
 
-    // Дерево идентификаторов
     public class IdentifierTree
     {
         private TreeNode root;
