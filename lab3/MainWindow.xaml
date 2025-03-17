@@ -1,0 +1,46 @@
+﻿<Window x:Class="lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Лабораторная работа №3" Height="450" Width="800">
+    <Grid>
+        <TabControl x:Name="tabControl" Margin="10">
+            <!-- Вкладка 1: Исходный файл -->
+            <TabItem Header="Исходный файл">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Button x:Name="btnOpenFile" Content="Выбрать файл" 
+                                Click="btnOpenFile_Click" Margin="0,0,10,0"/>
+                        <Button x:Name="btnParse" Content="Запустить разбор"
+                                Click="btnParse_Click"/>
+                    </StackPanel>
+                    <TextBox x:Name="txtSource"
+                             Margin="5"
+                             Grid.Row="1"
+                             AcceptsReturn="True"
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Auto"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка 2: Таблица лексем -->
+            <TabItem Header="Таблица лексем">
+                <DataGrid x:Name="dgTokens" AutoGenerateColumns="False" Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№" Binding="{Binding Index}" Width="40"/>
+                        <DataGridTextColumn Header="Лексема" Binding="{Binding Lexeme}" Width="*"/>
+                        <DataGridTextColumn Header="Тип" Binding="{Binding TokenType}" Width="150"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!-- Вкладка 3: Синтаксис (дерево разбора) -->
+            <TabItem Header="Синтаксис">
+                <TreeView x:Name="treeSyntax" Margin="5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
